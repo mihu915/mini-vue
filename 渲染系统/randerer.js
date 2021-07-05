@@ -7,11 +7,8 @@ const h = (tag, props, children) => {
 }
 
 const mount = (vnode, container) => {
-
   const { tag, props, children } = vnode
-
   const el = vnode.el = document.createElement(tag)
-
   if(props){
     if(typeof props === 'object'){
       for (let key in props){
@@ -28,7 +25,6 @@ const mount = (vnode, container) => {
     }else {
       throw new Error('参数props必须是一个对象。')
     }
-
   }
   if(children){
     if(typeof children === 'string'){
@@ -41,6 +37,7 @@ const mount = (vnode, container) => {
   }
   container.appendChild(el)
 }
+
 
 
 const patch = (n1, n2) => {
