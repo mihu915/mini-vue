@@ -36,10 +36,10 @@ const mount = (vnode, container) => {
 
       el.textContent = children
 
-    }else if(typeof children === 'object') {
-      children.forEach(child => {
+    }else {
+      children.forEach((child) => {
         console.log(child)
-        mount(child, el)
+        mount(child.el)
       })
     }
   }
