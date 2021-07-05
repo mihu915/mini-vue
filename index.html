@@ -13,14 +13,14 @@
   <script>
     const vnode = h('div', {class: 'hhh'}, 'hello')
 
-    const vnode3 = h('div', null, 'world')
-    const vnode2 = h('div', {onClick: () => console.log(123), class: 'aaa',test: 'test'}, [vnode3])
+
+    const vnode2 = h('div', {onClick: () => console.log(123), class: 'aaa',test: 'test'}, [h('div', null, 'world')])
     const vnode4 = h('div', {name: 'nonke', age: 19, class: 'aaa', ontouchstart:() => console.log('touchStart')}, 'hhhh')
     // mount(vnode, document.querySelector('#app'))
     mount(vnode2, document.querySelector('#app'))
-    // setTimeout(() => {
-    //   patch(vnode2, vnode4)
-    // },2000)
+    setTimeout(() => {
+      patch(vnode2, vnode4)
+    },2000)
   </script>
 </body>
 </html>

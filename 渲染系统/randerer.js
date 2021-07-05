@@ -7,13 +7,14 @@ const h = (tag, props, children) => {
 }
 
 const mount = (vnode, container) => {
-  const {tag, props, children} = vnode
+
+  const { tag, props, children } = vnode
+
   const el = vnode.el = document.createElement(tag)
 
   if(props){
     if(typeof props === 'object'){
       for (let key in props){
-        console.log(key);
         const value = props[key]
         if(key.startsWith('on')) {
           // toLowerCase()方法转小写
@@ -30,16 +31,11 @@ const mount = (vnode, container) => {
 
   }
   if(children){
-    console.log(typeof children)
-    console.log(children)
     if(typeof children === 'string'){
-
       el.textContent = children
-
     }else {
       children.forEach((child) => {
-        console.log(child)
-        mount(child.el)
+        mount(child, el)
       })
     }
   }
@@ -76,13 +72,11 @@ const patch = (n1, n2) => {
 
     for (const key in oldProps){
       if(!newProps[key]){
-        console.log(key)
         if(key.startsWith('on')) {
           // toLowerCase()方法转小写
           // slice()方法从第几个字符切除
           // 删除事件
           el.removeEventListener(key.slice(2).toLowerCase(), oldProps[key])
-
         }else {
           // el.setAttribute()为元素删除属性和值
           el.removeAttribute(key)
@@ -90,8 +84,12 @@ const patch = (n1, n2) => {
       }
     }
 
-
     // 处理children
+    if(typeof n2.children === 'string'){
+      el.textContent = n2.children
+    }else {
+
+    }
 
 
   }else {
