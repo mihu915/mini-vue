@@ -44,8 +44,8 @@ const patch = (n1, n2) => {
   const el = n2.el = n1.el
   if(n1.tag === n2.tag){
     // 处理 props
-    const newProps = n2.props
-    const oldProps = n1.props
+    const newProps = n2.props || {}
+    const oldProps = n1.props || {}
 
     for(const key in newProps){
       const newValue = newProps[key]
@@ -80,8 +80,8 @@ const patch = (n1, n2) => {
     }
 
     // 处理children
-    const newChildren = n2.children
-    const oldChildren = n1.children
+    const newChildren = n2.children || []
+    const oldChildren = n1.children || []
     if(typeof newChildren === 'string'){
       el.textContent = n2.children
     //  Array.prototype.isPrototypeOf(newChildren) 检测原型链上所有的父对象是否为数组，
