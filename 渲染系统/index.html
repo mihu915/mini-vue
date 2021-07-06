@@ -9,13 +9,13 @@
 </head>
 <body>
   <div id="app"></div>
-  <script src="渲染系统/randerer.js"></script>
+  <script src="randerer.js"></script>
   <script>
     const vnode = h('div', {class: 'hhh'}, 'hello')
 
 
-    const vnode2 = h('div', {onClick: () => console.log(123), class: 'aaa',test: 'test'}, [h('div', null, 'world')])
-    const vnode4 = h('div', {name: 'nonke', age: 19, class: 'aaa', ontouchstart:() => console.log('touchStart')}, 'hhhh')
+    const vnode2 = h('div', {onClick: () => console.log(123), class: 'aaa',test: 'test'},[h('div', null, 'world01'), h('div', null, 'world02')])
+    const vnode4 = h('div', {name: 'nonke', age: 19, class: 'aaa', ontouchstart:() => console.log('touchStart')}, [h('div', null, 'world03')])
     // mount(vnode, document.querySelector('#app'))
     mount(vnode2, document.querySelector('#app'))
     setTimeout(() => {
