@@ -38,11 +38,7 @@ const mount = (vnode, container) => {
   container.appendChild(el)
 }
 
-
-
 const patch = (n1, n2) => {
-  console.log(n1)
-  console.log(n2)
   const el = n2.el = n1.el
   if(n1.tag === n2.tag){
     // 处理 props
@@ -68,13 +64,11 @@ const patch = (n1, n2) => {
     }
 
     for (const key in oldProps){
-      console.log(key)
       if(key.startsWith('on')) {
         // toLowerCase()方法转小写
         // slice()方法从第几个字符切除
         // 删除事件
         const value = oldProps[key]
-        console.log(value)
         el.removeEventListener(key.slice(2).toLowerCase(), value)
       }
       if(!(key in newProps)){
@@ -82,7 +76,6 @@ const patch = (n1, n2) => {
         el.removeAttribute(key)
       }
     }
-
     // 处理children
     const newChildren = n2.children || []
     const oldChildren = n1.children || []
@@ -105,7 +98,6 @@ const patch = (n1, n2) => {
         // Math.min() 比较两个值，并返回最小值
         const commonLength = Math.min(oldChildren.length, newChildren.length)
         for(let i = 0; i < commonLength; i++){
-
           patch(oldChildren[i], newChildren[i])
         }
         if(oldChildren.length < newChildren.length){

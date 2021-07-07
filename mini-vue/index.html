@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script src="reactive.js"></script>
+  <script src="randerer.js"></script>
+  <script src="index.js"></script>
+  <div id="app"></div>
+  <script>
+    const App = {
+      data:reactive({
+        counter: 0
+      }),
+      render(){
+        return h('div', null, [
+          h('h2', null, `当前计数:${this.data.counter}`),
+          h('button', {onClick: () => {
+            this.data.counter++
+            }}, '+1')
+        ])
+      }
+    }
+    const app = createApp(App)
+    app.mount("#app")
+  </script>
+</body>
+</html>
